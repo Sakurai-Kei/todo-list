@@ -78,6 +78,49 @@ ul {
     transform: translateX(-20vw);
 }
 
+#addProjectModal {
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    left: 50vw;
+    top: 50vh;
+    transform: translate(-50%, -50%);
+    background-color: rgb(0, 0, 0);
+    background-color: rgb(0, 0, 0, 0.4);
+    width: 100vw;
+    height: 100vh;
+}
+
+#projectTitleInput {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #FFFFFF;
+    font-size: large;
+    background-color: rgb(75, 75, 150);
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 20px;
+}
+
+#projectModalButton {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5%;
+}
+
+#pCancel, #pSubmit {
+    border: none;
+    background: transparent;
+    color: #FFFFFF;
+}
+
+#pCancel:hover, #pSubmit:hover {
+    background-color: rgb(50, 50, 100);
+    border-radius: 6px;
+}
+
 .top {
     display: flex;
     flex-direction: column;

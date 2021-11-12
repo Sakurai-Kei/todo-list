@@ -18,12 +18,12 @@ class Task extends Project {
 
 const create = (() => {
     let storedData = storageModule.retrieveData()
-    let projectList = storedData[0];
-    let taskList = storedData[1];
-    function newProject() {
+    let projectListArray = storedData['projectList'];
+    let taskListArray = storedData['taskList'];
+    function newProject(pTitle) {
         let project = new Project(pTitle);
-        projectList.push(project);
-        // Execute a function to store the newly created object in localStorage
+        projectListArray.push(project);
+        storageModule.storeData('projectList', projectListArray);
     }
     function newTask() {
         let task = new Task(pTitle, title, dueDate, detail);

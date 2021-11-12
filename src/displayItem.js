@@ -18,10 +18,12 @@ const displayItem = (() => {
         }
     }
     function nav() {
-        console.log('Nav Bar Clicked');
         document.getElementById('navTabActive').classList.toggle('navTabHidden');
     }
-    return {tab, nav};
+    function addProjectModal() {
+        document.getElementById('addProjectModal').style.display = 'flex';
+    }
+    return {tab, nav, addProjectModal};
 })();
 
 export {displayItem};
