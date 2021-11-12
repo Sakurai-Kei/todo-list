@@ -1,3 +1,5 @@
+import {storageModule} from './localStorage.js';
+
 class Project {
     constructor(pTitle) {
         this.pTitle = pTitle;
@@ -15,8 +17,9 @@ class Task extends Project {
 }
 
 const create = (() => {
-    let projectList = [];
-    let taskList = [];
+    let storedData = storageModule.retrieveData()
+    let projectList = storedData[0];
+    let taskList = storedData[1];
     function newProject() {
         let project = new Project(pTitle);
         projectList.push(project);
@@ -27,7 +30,13 @@ const create = (() => {
         taskList.push(task);
         // Execute a function to store the newly created object in localStorage
     }
-    return {newProject,newTask};
+    function getProject(){
+        return projectList;
+    }
+    function getTask() {
+        return taskList;
+    }
+    return {newProject, newTask, getProject, getTask};
 })();
 
 export {create};
