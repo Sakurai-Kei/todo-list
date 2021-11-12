@@ -23,7 +23,7 @@ ul {
     height: 10vh;
 }
 
-.navIcon {
+#navIcon {
     width: 2vw;
     height: auto;
 }
@@ -69,7 +69,7 @@ ul {
     transition: all 0.7s ease;
 }
 
-#navTab {
+.navTabHidden {
     display: flex;
     flex-direction: column;
     background-color: rgb(75, 75, 150);

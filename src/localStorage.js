@@ -58,7 +58,7 @@ const storageModule = (() => {
     }
     function retrieveData() {
         const data = isDataAvailable();
-        return data
+        return data;
     }
     if (storageAvailable('localStorage')) {
         console.log('localStorage is available')

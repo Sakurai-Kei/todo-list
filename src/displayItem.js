@@ -17,7 +17,11 @@ const displayItem = (() => {
             }
         }
     }
-    return {tab};
+    function nav() {
+        console.log('Nav Bar Clicked');
+        document.getElementById('navTabActive').classList.toggle('navTabHidden');
+    }
+    return {tab, nav};
 })();
 
 export {displayItem};
