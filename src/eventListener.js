@@ -14,8 +14,14 @@ const eventListener = (() => {
     buttons.submitProject.addEventListener('click', () => {
         let pTitle = document.getElementById('pTitle').value;
         create.newProject(pTitle);
+        displayItem.closeAddProjectModal();
+        document.getElementById('pTitle').value = "";
+        displayItem.displayProjectList();
     })
-
+    buttons.cancelProject.addEventListener('click', () => {
+        displayItem.closeAddProjectModal();
+        document.getElementById('pTitle').value = "";
+    })
 })();
 
 export {eventListener};

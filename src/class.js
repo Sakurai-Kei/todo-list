@@ -27,14 +27,14 @@ const create = (() => {
     }
     function newTask() {
         let task = new Task(pTitle, title, dueDate, detail);
-        taskList.push(task);
-        // Execute a function to store the newly created object in localStorage
+        taskListArray.push(task);
+        storageModule.storeData('taskList', taskListArray);
     }
-    function getProject(){
-        return projectList;
+    function getProject() {
+        return projectListArray;
     }
     function getTask() {
-        return taskList;
+        return taskListArray;
     }
     return {newProject, newTask, getProject, getTask};
 })();
