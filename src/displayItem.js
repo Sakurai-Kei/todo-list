@@ -2,7 +2,7 @@ import {create} from './class.js';
 
 const displayItem = (() => {
     function tab() {
-        if(this.textContent !== "Main" | this.textContent !== "Priority") {
+        if(this.textContent !== "Main" & this.textContent !== "Priority") {
             // Execute Function to display all task in the selected project
             console.log(this.textContent);
             let that = this.textContent;
@@ -72,17 +72,25 @@ const displayItem = (() => {
         const taskListContainer = document.getElementById('todoList');
         const taskModal = document.createElement('div');
         taskModal.classList.add('modal');
+        taskModal.classList.add('addTaskButton');
         const title = document.createElement('div');
         title.textContent = '+';
         taskModal.appendChild(title);
         taskListContainer.appendChild(taskModal);
+        taskModal.addEventListener('click',() => {
+            showAddTaskModal();
+        })
+    }
+    function showAddTaskModal() {
+        document.getElementById('addTaskModal').style.display = 'flex';
+
     }
 
     let checkProjectList = create.getProject();
     if(checkProjectList !== null){
         displayProjectList();
     }
-    return {tab, nav, addProjectModal, closeAddProjectModal, displayProjectList};
+    return {tab, nav, addProjectModal, closeAddProjectModal, displayProjectList, showAddTaskModal};
 })();
 
 export {displayItem};
