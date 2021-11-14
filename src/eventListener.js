@@ -10,7 +10,6 @@ const eventListener = (() => {
         project.addEventListener('click', displayItem.tab);
     })
     buttons.addProject.addEventListener('click', displayItem.addProjectModal);
-    // buttons.cancelProject.addEventListener('click', /* Some function */);
     buttons.submitProject.addEventListener('click', () => {
         let pTitle = document.getElementById('pTitle').value;
         create.newProject(pTitle);
@@ -21,6 +20,31 @@ const eventListener = (() => {
     buttons.cancelProject.addEventListener('click', () => {
         displayItem.closeAddProjectModal();
         document.getElementById('pTitle').value = "";
+    })
+    buttons.cancelTask.addEventListener('click', () => {
+        displayItem.closeAddTaskModal()
+        document.getElementById('title').value = "";
+        document.getElementById('dueDate').value = "";
+        document.getElementById('detail').value = "";
+    })
+    buttons.submitTask.addEventListener('click', () => {
+        let pTitle = displayItem.getCurrentTab();
+        let title = document.getElementById('title').value;
+        let dueDate = document.getElementById('dueDate').value;
+        let detail = document.getElementById('detail').value;
+        create.newTask(pTitle, title, dueDate, detail);
+        displayItem.closeAddTaskModal();
+        document.getElementById('title').value = "";
+        document.getElementById('dueDate').value = "";
+        document.getElementById('detail').value = "";
+        displayItem.tab();
+    })
+    window.addEventListener('load', () => {
+        let checkProjectList = create.getProject();
+        if(checkProjectList !== null){
+            displayItem.displayProjectList();
+            displayItem.tab();
+        }
     })
 })();
 

@@ -25,7 +25,7 @@ const create = (() => {
         projectListArray.push(project);
         storageModule.storeData('projectList', projectListArray);
     }
-    function newTask() {
+    function newTask(pTitle, title, dueDate, detail) {
         let task = new Task(pTitle, title, dueDate, detail);
         taskListArray.push(task);
         storageModule.storeData('taskList', taskListArray);

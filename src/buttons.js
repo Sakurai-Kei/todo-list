@@ -6,8 +6,10 @@ const buttons = (() => {
     const addProject = document.getElementById('addProject');
     const cancelProject = document.getElementById('pCancel');
     const submitProject = document.getElementById('pSubmit');
+    const cancelTask = document.getElementById('tCancel');
+    const submitTask = document.getElementById('tSubmit');
 
-    return {nav, main, priority, project, addProject, cancelProject, submitProject};
+    return {nav, main, priority, project, addProject, cancelProject, submitProject, cancelTask, submitTask};
 })();
 
 export {buttons};

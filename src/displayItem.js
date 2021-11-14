@@ -1,15 +1,20 @@
 import {create} from './class.js';
 
 const displayItem = (() => {
+    let currentTab = "Main";
+    function getCurrentTab() {
+        return currentTab;
+    }
     function tab() {
-        if(this.textContent !== "Main" & this.textContent !== "Priority") {
+        if(this !== undefined & this.textContent !== undefined){
+            currentTab = this.textContent;
+        }
+        if(currentTab !== "Main" & currentTab !== "Priority") {
             // Execute Function to display all task in the selected project
-            console.log(this.textContent);
-            let that = this.textContent;
             const taskListContainer = document.getElementById('todoList')
             taskListContainer.textContent = "";
             let taskList = create.getTask();
-            let filterTaskList = taskList.filter(task => task.pTitle == that);
+            let filterTaskList = taskList.filter(task => task.pTitle == currentTab);
             filterTaskList.forEach(task => {
                 const taskModal = document.createElement('div');
                 taskModal.classList.add('modal');
@@ -27,10 +32,26 @@ const displayItem = (() => {
             addTaskModal();
         }
         else {
-            switch(this.textContent) {
+            switch(currentTab) {
                 case "Main":
                     // Execute Function to display all task
-                    console.log(this.textContent);
+                    const taskListContainer = document.getElementById('todoList')
+                    taskListContainer.textContent = "";
+                    let taskList = create.getTask();
+                    taskList.forEach(task => {
+                        const taskModal = document.createElement('div');
+                        taskModal.classList.add('modal');
+                        const title = document.createElement('div');
+                        title.textContent = task.title;
+                        const dueDate = document.createElement('div');
+                        dueDate.textContent = task.dueDate;
+                        const detail = document.createElement('div');
+                        detail.textContent = task.detail;
+                        taskModal.appendChild(title);
+                        taskModal.appendChild(dueDate);
+                        taskModal.appendChild(detail);
+                        taskListContainer.appendChild(taskModal);
+                    })
                     break;
                 case "Priority":
                     // Execute Function to display task that must be completed this week
@@ -86,11 +107,10 @@ const displayItem = (() => {
 
     }
 
-    let checkProjectList = create.getProject();
-    if(checkProjectList !== null){
-        displayProjectList();
+    function closeAddTaskModal() {
+        document.getElementById('addTaskModal').style.display = 'none';
     }
-    return {tab, nav, addProjectModal, closeAddProjectModal, displayProjectList, showAddTaskModal};
+    return {getCurrentTab, tab, nav, addProjectModal, closeAddProjectModal, displayProjectList, showAddTaskModal, closeAddTaskModal};
 })();
 
 export {displayItem};
