@@ -1,6 +1,7 @@
 import {buttons} from './buttons.js';
 import {displayItem} from './displayItem.js';
 import {create} from './class.js';
+import {format} from 'date-fns';
 
 const eventListener = (() => {
     buttons.nav.addEventListener('click', displayItem.nav);
@@ -30,7 +31,7 @@ const eventListener = (() => {
     buttons.submitTask.addEventListener('click', () => {
         let pTitle = displayItem.getCurrentTab();
         let title = document.getElementById('title').value;
-        let dueDate = document.getElementById('dueDate').value;
+        let dueDate = format(new Date(document.getElementById('dueDate').value), 'PPPP');
         let detail = document.getElementById('detail').value;
         create.newTask(pTitle, title, dueDate, detail);
         displayItem.closeAddTaskModal();
