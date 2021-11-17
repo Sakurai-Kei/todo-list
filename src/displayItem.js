@@ -1,5 +1,4 @@
 import {create} from './class.js';
-import { storageModule } from './localStorage.js';
 
 const displayItem = (() => {
     let currentTab = "Main";
@@ -14,7 +13,6 @@ const displayItem = (() => {
             currentTab = this.textContent;
         }
         if(currentTab !== "Main" & currentTab !== "Priority") {
-            // Execute Function to display all task in the selected project
             const taskListContainer = document.getElementById('todoList')
             taskListContainer.textContent = "";
             let taskList = create.getTask();
@@ -41,7 +39,6 @@ const displayItem = (() => {
         else {
             switch(currentTab) {
                 case "Main":
-                    // Execute Function to display all task
                     const taskListContainer = document.getElementById('todoList')
                     taskListContainer.textContent = "";
                     let taskList = create.getTask();
@@ -60,10 +57,6 @@ const displayItem = (() => {
                         taskListContainer.appendChild(taskModal);
                     })
                     break;
-                case "Priority":
-                    // Execute Function to display task that must be completed this week
-                    console.log(this.textContent);
-                    break; 
             }
         }
     }
@@ -127,10 +120,8 @@ const displayItem = (() => {
         taskModal.appendChild(title);
         taskListContainer.appendChild(taskModal);
         taskModal.addEventListener('click',() => {
-            console.log('Exits Deletion Mode')
             const toBeRemoved = Array.from(document.querySelectorAll('.toBeRemoved'));
             toBeRemoved.forEach(task => {
-                console.log(task.firstChild.textContent)
                 let taskList = create.getTask();
                 let updatedTaskList = taskList.filter(oldTask => oldTask.title != task.firstChild.textContent);
                 create.updateTask(updatedTaskList);

@@ -70,10 +70,6 @@ ul {
 }
 
 .navTabHidden {
-    /* display: flex;
-    flex-direction: column;
-    background-color: rgb(75, 75, 150);
-    width: 18vw; */
     transition: all 0.7s ease;
     transform: translateX(-18vw);
 }
@@ -171,15 +167,11 @@ ul {
 
 .active {
     background-color: rgb(50, 50, 100);
-    /* transform: scale(1.1);
-    width: 95.3%; magic number to avoid background overflow */
     font-size: medium;
 }
 
 #todoList {
     display: flex;
-    /* justify-content: center;
-    align-items: center; */
     flex: 1;
     flex-wrap: wrap;
     transition: all 0.7s ease;

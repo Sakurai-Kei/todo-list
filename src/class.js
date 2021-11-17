@@ -13,7 +13,6 @@ class Task extends Project {
         this.dueDate = dueDate;
         this.detail = detail;
     }
-    // Method to return time limit before expiry
 }
 
 const create = (() => {
