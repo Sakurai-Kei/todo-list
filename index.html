@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <script src="main.js" defer></script>
+</head>
+<body>
+    <div id="headerContainer">
+        <button class="left"><img src="navBar.png" alt="nav bar icon" id="navIcon"></button>
+        <div>Todo List</div>
+    </div>
+    <div id="middleContainer">
+        <div id="addProjectModal">
+            <div id="projectTitleInput">
+                <label>Project Title</label><br>
+                <input type="text" id="pTitle" placeholder="Enter Project Title">
+                <div id="projectModalButton">
+                    <button id="pCancel">Cancel</button>
+                    <button id="pSubmit">Submit</button>
+                </div>
+            </div>
+        </div>
+        <div id="addTaskModal">
+            <div id="taskInput">
+                <label>Task Title</label><br>
+                <input type="text" id="title" placeholder="Enter Task Title"><br>
+                <label>Due Date</label><br>
+                <input type="date" id="dueDate" placeholder="Enter Due Date"><br>
+                <label>Details</label><br>
+                <textarea id="detail" placeholder="Enter Details"></textarea><br>
+                <div id="taskModalButton">
+                    <button id="tCancel">Cancel</button>
+                    <button id="tSubmit">Submit</button>
+                </div>
+            </div>
+        </div>
+        <div id="navTabActive">
+            <div class="top">
+                <ul>
+                    <li><button id="main" class="navItem active">Main</button></li>
+                </ul>
+            </div>
+            <div class="bottom">
+                <div class="bottomHeader">Projects</div>
+                <div class="projectList">
+                    <ul id="projectList">
+                    </ul>
+                </div>
+                <button id="addProject" class="navItem addProject">+</button>
+            </div>
+        </div>
+        <div id="todoList">
+        </div>
+    </div>
+    <div id="footerContainer">Copyright &copy; 2021 Sakurai-Kei</div>
+</body>
+</html>
