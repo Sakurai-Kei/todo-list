@@ -36,7 +36,13 @@ const create = (() => {
     function getTask() {
         return taskListArray;
     }
-    return {newProject, newTask, getProject, getTask};
+    function updateProject(project) {
+        projectListArray = project;
+    }
+    function updateTask(task) {
+        taskListArray = task;
+    }
+    return {newProject, newTask, getProject, getTask, updateProject, updateTask};
 })();
 
 export {create};

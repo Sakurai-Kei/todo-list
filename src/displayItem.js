@@ -18,6 +18,7 @@ const displayItem = (() => {
             filterTaskList.forEach(task => {
                 const taskModal = document.createElement('div');
                 taskModal.classList.add('modal');
+                taskModal.classList.add('task');
                 const title = document.createElement('div');
                 title.textContent = task.title;
                 const dueDate = document.createElement('div');
@@ -30,6 +31,7 @@ const displayItem = (() => {
                 taskListContainer.appendChild(taskModal);
             })
             addTaskModal();
+            deleteTaskButton();
         }
         else {
             switch(currentTab) {
@@ -62,6 +64,7 @@ const displayItem = (() => {
     }
     function nav() {
         document.getElementById('navTabActive').classList.toggle('navTabHidden');
+        document.getElementById('todoList').classList.toggle('navTabHidden');
     }
     function addProjectModal() {
         document.getElementById('addProjectModal').style.display = 'flex';
@@ -106,9 +109,45 @@ const displayItem = (() => {
         document.getElementById('addTaskModal').style.display = 'flex';
 
     }
-
     function closeAddTaskModal() {
         document.getElementById('addTaskModal').style.display = 'none';
+    }
+    function showConfirmButton(deletionModeState) {
+        const taskListContainer = document.getElementById('todoList');
+        const taskModal = document.createElement('div');
+        taskModal.classList.add('modal');
+        taskModal.classList.add('confirmButton');
+        const title = document.createElement('div');
+        title.textContent = '✓';
+        taskModal.appendChild(title);
+        taskListContainer.appendChild(taskModal);
+        taskModal.addEventListener('click',() => {
+            deletionModeState = false;
+            console.log('Exits Deletion Mode')
+        })
+    }
+    function chooseTaskToRemove() {
+        this.classList.toggle('toBeRemoved');
+    }
+    function deletionMode() {
+        const deleteTaskModal = document.querySelector('.deleteTaskButton');
+        deleteTaskModal.removeEventListener('click', deletionMode);
+        showConfirmButton();
+        const todoList = Array.from(document.querySelectorAll('.task'));
+        todoList.forEach(task => {
+            task.addEventListener('click', chooseTaskToRemove)
+        })
+    }
+    function deleteTaskButton() {
+        const taskListContainer = document.getElementById('todoList');
+        const deleteTaskModal = document.createElement('div');
+        deleteTaskModal.classList.add('modal');
+        deleteTaskModal.classList.add('deleteTaskButton');
+        const title = document.createElement('div');
+        title.textContent = '-';
+        deleteTaskModal.appendChild(title);
+        taskListContainer.appendChild(deleteTaskModal);
+        deleteTaskModal.addEventListener('click', deletionMode);
     }
     return {getCurrentTab, tab, nav, addProjectModal, closeAddProjectModal, displayProjectList, showAddTaskModal, closeAddTaskModal};
 })();
