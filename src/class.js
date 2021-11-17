@@ -41,6 +41,7 @@ const create = (() => {
     }
     function updateTask(task) {
         taskListArray = task;
+        storageModule.storeData('taskList', taskListArray);
     }
     return {newProject, newTask, getProject, getTask, updateProject, updateTask};
 })();

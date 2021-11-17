@@ -112,7 +112,7 @@ const displayItem = (() => {
     function closeAddTaskModal() {
         document.getElementById('addTaskModal').style.display = 'none';
     }
-    function showConfirmButton(deletionModeState) {
+    function showConfirmButton() {
         const taskListContainer = document.getElementById('todoList');
         const taskModal = document.createElement('div');
         taskModal.classList.add('modal');
@@ -122,8 +122,21 @@ const displayItem = (() => {
         taskModal.appendChild(title);
         taskListContainer.appendChild(taskModal);
         taskModal.addEventListener('click',() => {
-            deletionModeState = false;
             console.log('Exits Deletion Mode')
+            const toBeRemoved = Array.from(document.querySelectorAll('.toBeRemoved'));
+            toBeRemoved.forEach(task => {
+                console.log(task.firstChild.textContent)
+                let taskList = create.getTask();
+                let updatedTaskList = taskList.filter(oldTask => oldTask.title != task.firstChild.textContent);
+                create.updateTask(updatedTaskList);
+                task.remove();
+            })
+            deleteTaskButton();
+            taskModal.remove();
+            const todoList = Array.from(document.querySelectorAll('.task'));
+            todoList.forEach(task => {
+            task.removeEventListener('click', chooseTaskToRemove)
+        })
         })
     }
     function chooseTaskToRemove() {
@@ -131,7 +144,7 @@ const displayItem = (() => {
     }
     function deletionMode() {
         const deleteTaskModal = document.querySelector('.deleteTaskButton');
-        deleteTaskModal.removeEventListener('click', deletionMode);
+        deleteTaskModal.remove();
         showConfirmButton();
         const todoList = Array.from(document.querySelectorAll('.task'));
         todoList.forEach(task => {
