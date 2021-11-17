@@ -38,6 +38,7 @@ const create = (() => {
     }
     function updateProject(project) {
         projectListArray = project;
+        storageModule.storeData('projectList', projectListArray);
     }
     function updateTask(task) {
         taskListArray = task;

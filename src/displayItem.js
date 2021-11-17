@@ -1,4 +1,5 @@
 import {create} from './class.js';
+import { storageModule } from './localStorage.js';
 
 const displayItem = (() => {
     let currentTab = "Main";
@@ -6,7 +7,10 @@ const displayItem = (() => {
         return currentTab;
     }
     function tab() {
-        if(this !== undefined & this.textContent !== undefined){
+        if(this == undefined) {
+            currentTab = 'Main';
+        }
+        else if(this !== undefined & this.textContent !== undefined){
             currentTab = this.textContent;
         }
         if(currentTab !== "Main" & currentTab !== "Priority") {
@@ -32,6 +36,7 @@ const displayItem = (() => {
             })
             addTaskModal();
             deleteTaskButton();
+            deleteProjectButton();
         }
         else {
             switch(currentTab) {
@@ -161,6 +166,28 @@ const displayItem = (() => {
         deleteTaskModal.appendChild(title);
         taskListContainer.appendChild(deleteTaskModal);
         deleteTaskModal.addEventListener('click', deletionMode);
+    }
+    function deleteProjectButton() {
+        const taskListContainer = document.getElementById('todoList');
+        const deleteProjectModal = document.createElement('div');
+        deleteProjectModal.classList.add('modal');
+        deleteProjectModal.classList.add('deleteProjectButton');
+        const title = document.createElement('div');
+        title.textContent = 'DEL';
+        deleteProjectModal.appendChild(title);
+        taskListContainer.appendChild(deleteProjectModal);
+        deleteProjectModal.addEventListener('click', deleteProject)
+    }
+    function deleteProject() {
+        let projectList = create.getProject();
+        let updatedProjectList = projectList.filter(project => project.pTitle != currentTab);
+        let taskList = create.getTask();
+        let updatedTaskList = taskList.filter(task => task.pTitle != currentTab);
+        create.updateProject(updatedProjectList);
+        create.updateTask(updatedTaskList);
+        currentTab = 'Main';
+        tab();
+        displayProjectList();
     }
     return {getCurrentTab, tab, nav, addProjectModal, closeAddProjectModal, displayProjectList, showAddTaskModal, closeAddTaskModal};
 })();

@@ -202,7 +202,7 @@ ul {
     border-color: red;
 }
 
-.addTaskButton, .deleteTaskButton, .confirmButton {
+.addTaskButton, .deleteTaskButton, .confirmButton, .deleteProjectButton {
     align-items: center;
     justify-content: center;
     border-radius: 50%;
@@ -213,7 +213,7 @@ ul {
     transition: all 0.3s ease;
 }
 
-.addTaskButton:hover, .deleteTaskButton:hover, .confirmButton:hover {
+.addTaskButton:hover, .deleteTaskButton:hover, .confirmButton:hover, .deleteProjectButton:hover {
     transform: scale(1.1);
 }
 
